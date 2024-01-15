@@ -9,18 +9,10 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
-import sys
 import shutil
 import time
 import collections
 
-import hiero.core
-from hiero.exporters import FnShotExporter
-from hiero.exporters import FnShotProcessor
-from hiero.exporters import FnTranscodeExporter
-from hiero.ui.FnUIProperty import UIPropertyFactory
-
-import tank
 from tank.platform.qt import QtGui, QtCore
 
 from . import HieroCustomizeExportUI
@@ -92,6 +84,8 @@ class ShotgunHieroObjectBase(object):
         :returns: A widget, or None if no custom widget was provided by the
             hook.
         """
+        from hiero.ui.FnUIProperty import UIPropertyFactory
+
         properties = properties or self._preset.properties()
         hook_name = "hook_customize_export_ui"
         hook_widget = self.app.execute_hook_method(

@@ -37,7 +37,6 @@ configuration:
             items:
                 channel: { type: str }
                 name: { type: str }
-        description:
 
     custom_template_fields:
       type: list

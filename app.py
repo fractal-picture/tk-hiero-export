@@ -23,13 +23,6 @@ from sgtk.platform.qt import QtCore
 from sgtk.platform import Application
 from sgtk import TankError
 
-import hiero.ui
-import hiero.core
-import hiero.exporters
-
-from hiero.exporters import FnExternalRender
-from hiero.exporters import FnNukeShotExporter
-
 # do not use tk import here, hiero needs the classes to be in their
 # standard namespace, hack to get the right path in sys.path
 sys.path.append(os.path.join(os.path.dirname(__file__), "python"))
@@ -152,6 +145,9 @@ class HieroExport(Application):
         """
         Set up this app with the hiero exporter frameworks
         """
+        import hiero.ui
+        import hiero.core
+
         # register our app with the base class that all custom hiero objects derive from.
         ShotgunHieroObjectBase.setApp(self)
 
@@ -191,6 +187,9 @@ class HieroExport(Application):
         Hiero std method to add new exporter presets.
         Passed in to hiero.core.taskRegistry.setDefaultPresets() as a function pointer.
         """
+        import hiero.core
+        from hiero.exporters import FnExternalRender
+
         # add all built-in defaults
         self._old_AddDefaultPresets_fn(overwrite)
 

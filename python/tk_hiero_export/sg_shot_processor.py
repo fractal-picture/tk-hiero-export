@@ -10,11 +10,7 @@
 
 import itertools
 
-import sgtk
 from sgtk.platform.qt import QtGui
-
-import hiero.core
-from hiero.core import FnExporterBase
 
 from hiero.exporters import FnShotProcessor
 
@@ -313,6 +309,8 @@ class ShotgunShotProcessorUI(
         """
         Returns all tags by name
         """
+        import hiero.core
+
         tagsByName = {}
         projects = [hiero.core.project("Tag Presets")] + list(hiero.core.projects())
         for project in projects:
@@ -322,6 +320,8 @@ class ShotgunShotProcessorUI(
         return tagsByName
 
     def _get_tags(self, items):
+        from hiero.core import FnExporterBase
+
         tags = FnExporterBase.tagsFromSelection(items, includeChildren=True)
         tags = [
             tag
@@ -822,6 +822,7 @@ class ShotgunShotProcessor(ShotgunHieroObjectBase, FnShotProcessor.ShotProcessor
         :param fps: Frames per seconds (float)
         :return: timecode string
         """
+        import hiero.core
 
         if drop_frame:
             display_type = hiero.core.Timecode.kDisplayDropFrameTimecode
