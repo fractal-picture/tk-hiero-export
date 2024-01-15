@@ -47,7 +47,7 @@ from tk_hiero_export import (
 
 sys.path.pop()
 
-__version__ = "0.7.3"
+__version__ = "0.7.8"
 
 # list keywords Hiero is using in its export substitution
 HIERO_SUBSTITUTION_KEYWORDS = [
